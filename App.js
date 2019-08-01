@@ -6,7 +6,6 @@ const  App = ()=> {
     const [taskList, setTaskList] = useState([])
     const [taskField, setTaskField] = useState("");
 
-    console.log("excute", taskList)
     function handleTaskFieldChange(e){
         setTaskField(e.target.value);
     }
@@ -19,9 +18,11 @@ const  App = ()=> {
     }
 
     function removeButtonHandler(e){
-        console.log(typeof(e),e)
-        setTaskList([...taskList.slice(0,e.target.id),...taskList.slice(e.target.id+1)])
-    }
+        var i = e.target.id;
+        const updatedTasks = [...taskList];
+        updatedTasks.splice(i,1);
+        setTaskList(updatedTasks);
+  }
 
     return(
         <div>
@@ -32,7 +33,7 @@ const  App = ()=> {
             className= "inputAdd">
                 <input
                 value={taskField}
-                placeHolder="enter new task "
+                placeholder="enter new task "
                 onChange = {handleTaskFieldChange} >
                 </input>
                 <button                
